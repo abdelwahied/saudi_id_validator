@@ -59,8 +59,9 @@ jobs:
           composer config --no-plugins allow-plugins.phpstan/extension-installer true
           composer config --no-plugins allow-plugins.php-http/discovery true
           composer config --no-plugins allow-plugins.tbachert/spi true
-          composer config minimum-stability dev
-          composer config prefer-stable true
+          # Keep the default "stable" minimum-stability from recommended-project:
+          # forcing "dev" drags composer/composer dev-main into resolution, which
+          # conflicts with the runner's composer on the Drupal 10.3 line.
           composer require --dev --no-update \
             "drupal/core-dev:${{ inputs.drupal-constraint }}" "drupal/coder:^8.3" "drush/drush:^12 || ^13"
           composer update --no-interaction --prefer-dist --no-progress
@@ -94,6 +95,10 @@ jobs:
         working-directory: drupal
         run: |
           set -euo pipefail
+          # The files directory and a writable sites/default must exist before
+          # drush can write settings.php and the sqlite database into them.
+          mkdir -p web/sites/default/files
+          chmod -R 0777 web/sites/default
           php -d memory_limit=-1 vendor/bin/drush site:install standard \
             --db-url=sqlite://localhost/sites/default/files/.ht.site.sqlite \
             --site-name=CI --account-name=admin --account-pass=admin -y
