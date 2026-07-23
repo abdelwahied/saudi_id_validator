@@ -136,4 +136,12 @@ jobs:
           # Third-party modules emit deprecations on the newest core; the module's
           # own code emits none. Do not fail an otherwise-green run on them.
           SYMFONY_DEPRECATIONS_HELPER: disabled
-        run: php -d memory_limit=-1 vendor/bin/phpunit -c web/core/phpunit.xml.dist "web/modules/custom/${{ inputs.module }}"
+        run: |
+          set -euo pipefail
+          # Absolute paths: tests marked #[RunTestsInSeparateProcesses] fork a
+          # subprocess that re-reads the configuration, and on the older PHPUnit
+          # shipped with Drupal 10.3 a relative --configuration path is not found
+          # from the subprocess. $(pwd) is the drupal/ site root here.
+          php -d memory_limit=-1 vendor/bin/phpunit \
+            -c "$(pwd)/web/core/phpunit.xml.dist" \
+            "$(pwd)/web/modules/custom/${{ inputs.module }}"
