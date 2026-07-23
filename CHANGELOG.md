@@ -14,6 +14,16 @@ for a given sequence. Classes marked `@internal` may change in any release.
 
 Nothing yet.
 
+## [1.0.1] — 2026-07-23
+
+### Fixed
+
+- Documented the element validator's by-reference `$element` parameter as the
+  generic array the Form API provides, clearing a PHPStan level 4 by-reference
+  type warning.
+
+No functional or public API changes.
+
 ## [1.0.0] — 2026-07-22
 
 First release.

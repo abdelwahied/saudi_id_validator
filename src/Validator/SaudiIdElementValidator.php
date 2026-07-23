@@ -40,8 +40,9 @@ final class SaudiIdElementValidator {
    * decision, expressed with '#required', and answering it here as well would
    * make an optional field impossible.
    *
-   * @param array<string, mixed> $element
-   *   The form element.
+   * @param array $element
+   *   The form element. Passed by reference by the Form API, so the type stays
+   *   the generic array the caller provides.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The form state.
    */
