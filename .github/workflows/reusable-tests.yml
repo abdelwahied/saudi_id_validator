@@ -62,15 +62,19 @@ jobs:
           # Keep the default "stable" minimum-stability from recommended-project:
           # forcing "dev" drags composer/composer dev-main into resolution, which
           # conflicts with the runner's composer on the Drupal 10.3 line.
-          EXTRA_REQUIRE=""
+          #
+          # drupal/core-dev on the 10.3 line pins justinrainbow/json-schema ^5.2,
+          # while the composer/composer it transitively requires now needs
+          # json-schema ^6 — an unsolvable pair, and the only composer/composer
+          # that uses json-schema 5 (the 2.7 series) is blocked by advisories.
+          # composer/composer is exercised only by core BuildTests, which this
+          # module does not run, so on 10.3 we replace it out to break the knot.
           if [[ "${{ inputs.drupal-constraint }}" == '~10.3'* ]]; then
-            # drupal/core-dev 10.3.x pins justinrainbow/json-schema ^5.2, which
-            # collides with the json-schema ^6 that current composer/composer
-            # pulls in. Pin composer/composer to the 2.7 line (json-schema 5.x).
-            EXTRA_REQUIRE="composer/composer:~2.7.7"
+            jq '.replace = ((.replace // {}) + {"composer/composer": "*"})' composer.json > composer.tmp.json
+            mv composer.tmp.json composer.json
           fi
           composer require --dev --no-update \
-            "drupal/core-dev:${{ inputs.drupal-constraint }}" "drupal/coder:^8.3" "drush/drush:^12 || ^13" $EXTRA_REQUIRE
+            "drupal/core-dev:${{ inputs.drupal-constraint }}" "drupal/coder:^8.3" "drush/drush:^12 || ^13"
           composer update --no-interaction --prefer-dist --no-progress
 
       - name: Install contrib dependencies (tap_payment only)
