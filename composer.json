@@ -1,0 +1,45 @@
+{
+    "name": "abdelwahied/saudi_id_validator",
+    "description": "Offline validation of Saudi National ID and Iqama numbers for Drupal 10/11 — format, type and official checksum.",
+    "type": "drupal-module",
+    "homepage": "https://github.com/abdelwahied/saudi_id_validator",
+    "license": "GPL-2.0-or-later",
+    "keywords": [
+        "drupal",
+        "validation",
+        "saudi",
+        "national-id",
+        "iqama",
+        "checksum"
+    ],
+    "authors": [
+        {
+            "name": "Abdelwahied",
+            "email": "abdelwahied.fx@gmail.com",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/abdelwahied/saudi_id_validator/issues",
+        "source": "https://github.com/abdelwahied/saudi_id_validator",
+        "docs": "https://github.com/abdelwahied/saudi_id_validator/blob/main/API.md",
+        "email": "abdelwahied.fx@gmail.com"
+    },
+    "require": {
+        "php": ">=8.3",
+        "drupal/core": "^10.3 || ^11"
+    },
+    "require-dev": {
+        "drupal/core-dev": "^10.3 || ^11"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\saudi_id_validator\\": "src/"
+        }
+    },
+    "extra": {
+        "drupal": {
+            "version": "1.0.0"
+        }
+    }
+}

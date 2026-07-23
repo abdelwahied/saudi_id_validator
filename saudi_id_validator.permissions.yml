@@ -1,0 +1,4 @@
+administer saudi id validator:
+  title: 'Administer Saudi ID Validator'
+  description: 'Configure which fields are validated automatically and what the user is told.'
+  restrict access: true

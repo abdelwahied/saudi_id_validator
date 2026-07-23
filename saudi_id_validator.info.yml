@@ -1,0 +1,7 @@
+name: 'Saudi ID Validator'
+type: module
+description: 'Validates Saudi National ID and Iqama numbers offline — format, type and official checksum — through one reusable service, a Form API validator and an entity constraint.'
+package: 'Validation'
+core_version_requirement: ^10.3 || ^11
+php: '8.3'
+configure: saudi_id_validator.settings

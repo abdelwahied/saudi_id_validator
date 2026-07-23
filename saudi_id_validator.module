@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * Applies identification-number validation to fields that ask for one.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\saudi_id_validator\Validator\SaudiIdElementValidator;
+use Drupal\saudi_id_validator\ValidatorSettings;
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Walks the built form and attaches the element validator to every textual
+ * element whose key an administrator has listed. This is the "no custom code"
+ * path: a form that already calls its field `national_id` gets validation
+ * without being edited.
+ *
+ * A form that attaches the validator itself is left alone rather than having it
+ * added twice, and nothing here can switch validation off for an element that
+ * asked for it — the setting decides where validation is added, never where it
+ * is skipped.
+ */
+function saudi_id_validator_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  /** @var \Drupal\saudi_id_validator\ValidatorSettings $settings */
+  $settings = \Drupal::service(ValidatorSettings::class);
+
+  if (!$settings->automaticValidationEnabled()) {
+    return;
+  }
+
+  $watched = $settings->watchedFieldNames();
+
+  if ($watched === []) {
+    return;
+  }
+
+  _saudi_id_validator_attach($form, $watched);
+}
+
+/**
+ * Attaches the validator to matching elements, recursively.
+ *
+ * @param array<string|int, mixed> $elements
+ *   A form or a branch of one, altered in place.
+ * @param array<int, string> $watched
+ *   The machine names to match.
+ */
+function _saudi_id_validator_attach(array &$elements, array $watched): void {
+  foreach (Element::children($elements) as $key) {
+    if (!is_array($elements[$key])) {
+      continue;
+    }
+
+    if (in_array((string) $key, $watched, TRUE) && _saudi_id_validator_is_text_element($elements[$key])) {
+      $callback = [SaudiIdElementValidator::class, 'validate'];
+      $existing = $elements[$key]['#element_validate'] ?? [];
+
+      if (!in_array($callback, $existing, TRUE)) {
+        $existing[] = $callback;
+        $elements[$key]['#element_validate'] = $existing;
+      }
+    }
+
+    _saudi_id_validator_attach($elements[$key], $watched);
+  }
+}
+
+/**
+ * Whether an element holds a single typed value this validator understands.
+ *
+ * @param array<string, mixed> $element
+ *   The element.
+ *
+ * @return bool
+ *   TRUE for a plain textual input.
+ */
+function _saudi_id_validator_is_text_element(array $element): bool {
+  return in_array($element['#type'] ?? '', ['textfield', 'number', 'tel', 'search'], TRUE);
+}

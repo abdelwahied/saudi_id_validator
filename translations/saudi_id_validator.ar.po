@@ -1,0 +1,49 @@
+# Arabic translation of the Saudi ID Validator module.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: saudi_id_validator\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=((n==0)?0:((n==1)?1:((n==2)?2:((n%100>=3 && n%100<=10)?3:((n%100>=11 && n%100<=99)?4:5)))));\n"
+
+msgid "Saudi National ID"
+msgstr "هوية وطنية سعودية"
+
+msgid "Resident ID (Iqama)"
+msgstr "رقم إقامة"
+
+msgid "The ID must contain exactly 10 digits."
+msgstr "يجب أن يتكوّن رقم الهوية من ١٠ أرقام بالضبط."
+
+msgid "Invalid Saudi ID number: it must start with 1 (National ID) or 2 (Iqama)."
+msgstr "رقم الهوية غير صحيح: يجب أن يبدأ بـ ١ (هوية وطنية) أو ٢ (إقامة)."
+
+msgid "Checksum validation failed. Please check the number you entered."
+msgstr "فشل التحقق من صحة الرقم. يرجى مراجعة الرقم المُدخل."
+
+msgid "Saudi identification number"
+msgstr "رقم هوية سعودي"
+
+msgid "This must be a @expected. @actual numbers are not accepted here."
+msgstr "يجب أن يكون @expected. أرقام @actual غير مقبولة هنا."
+
+msgid "Saudi ID Validator"
+msgstr "التحقق من الهوية السعودية"
+
+msgid "Validate matching fields automatically"
+msgstr "التحقق تلقائيًا من الحقول المطابقة"
+
+msgid "Field machine names"
+msgstr "الأسماء البرمجية للحقول"
+
+msgid "One machine name per line."
+msgstr "اسم برمجي واحد في كل سطر."
+
+msgid "Tell the user which type was detected"
+msgstr "إظهار نوع الهوية المكتشَف للمستخدم"
+
+msgid "Administer Saudi ID Validator"
+msgstr "إدارة التحقق من الهوية السعودية"

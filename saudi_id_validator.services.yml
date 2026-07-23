@@ -1,0 +1,20 @@
+services:
+  Drupal\saudi_id_validator\Checksum\LuhnChecksum: ~
+
+  Drupal\saudi_id_validator\SaudiIdValidator:
+    arguments:
+      - '@Drupal\saudi_id_validator\Checksum\LuhnChecksum'
+      - '@event_dispatcher'
+
+  # The interface is the name to inject: a site may swap the implementation
+  # without every consumer changing what it asks the container for.
+  Drupal\saudi_id_validator\SaudiIdValidatorInterface: '@Drupal\saudi_id_validator\SaudiIdValidator'
+
+  Drupal\saudi_id_validator\ValidatorSettings:
+    arguments:
+      - '@config.factory'
+
+  # Short aliases, kept because a Drupal service name is the conventional way to
+  # reference a service from YAML and from twig-facing code.
+  saudi_id_validator.validator: '@Drupal\saudi_id_validator\SaudiIdValidatorInterface'
+  saudi_id_validator.settings: '@Drupal\saudi_id_validator\ValidatorSettings'

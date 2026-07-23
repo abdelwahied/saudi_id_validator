@@ -1,0 +1,5 @@
+saudi_id_validator.settings:
+  title: 'Saudi ID Validator'
+  description: 'Configure Saudi National ID and Iqama validation.'
+  route_name: saudi_id_validator.settings
+  parent: system.admin_config_system

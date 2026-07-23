@@ -1,0 +1,8 @@
+automatic_validation: true
+field_names:
+  - national_id
+  - saudi_id
+  - identity_number
+  - iqama
+  - id_number
+show_detected_type: false

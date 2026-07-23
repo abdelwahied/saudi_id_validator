@@ -1,0 +1,16 @@
+saudi_id_validator.settings:
+  type: config_object
+  label: 'Saudi ID Validator settings'
+  mapping:
+    automatic_validation:
+      type: boolean
+      label: 'Validate matching fields automatically'
+    field_names:
+      type: sequence
+      label: 'Field machine names'
+      sequence:
+        type: string
+        label: 'Field machine name'
+    show_detected_type:
+      type: boolean
+      label: 'Tell the user which type was detected'
