@@ -6,7 +6,7 @@
 [![Drupal](https://img.shields.io/badge/Drupal-%5E10.3%20%7C%7C%20%5E11-blue.svg)](https://www.drupal.org)
 [![PHP](https://img.shields.io/badge/PHP-%E2%89%A5%208.3-blue.svg)](https://www.php.net)
 
-> **Compatibility:** Drupal `^10.3 || ^11`, PHP `>= 8.3`. **Version:** 1.0.0.
+> **Compatibility:** Drupal `^10.3 || ^11 || ^12`, PHP `>= 8.3`. **Version:** 1.1.0.
 
 Validates Saudi identification numbers — National IDs and Iqama (resident)
 numbers — entirely offline. No registry is contacted, no HTTP request is made,
