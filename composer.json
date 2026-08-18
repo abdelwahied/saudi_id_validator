@@ -27,10 +27,10 @@
     },
     "require": {
         "php": ">=8.3",
-        "drupal/core": "^10.3 || ^11"
+        "drupal/core": "^10.3 || ^11 || ^12"
     },
     "require-dev": {
-        "drupal/core-dev": "^10.3 || ^11"
+        "drupal/core-dev": "^10.3 || ^11 || ^12"
     },
     "autoload": {
         "psr-4": {
@@ -39,7 +39,7 @@
     },
     "extra": {
         "drupal": {
-            "version": "1.0.0"
+            "version": "1.1.0"
         }
     }
 }

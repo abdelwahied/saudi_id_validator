@@ -14,6 +14,21 @@ for a given sequence. Classes marked `@internal` may change in any release.
 
 Nothing yet.
 
+## [1.1.0] — 2026-08-17
+
+### Added
+
+- **Drupal 12 compatibility.** `core_version_requirement` and the Composer
+  `drupal/core` and `drupal/core-dev` constraints now accept `^12` alongside
+  the existing `^10.3 || ^11`.
+
+### Notes
+
+- Metadata only. No code, behaviour or public API change. Validated on
+  Drupal 11.4.4; Drupal 12 and Drupal 10.3 compatibility is established by
+  static analysis, as no runtime for either was available.
+
+
 ## [1.0.1] — 2026-07-23
 
 ### Fixed
